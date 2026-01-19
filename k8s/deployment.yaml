@@ -1,0 +1,4 @@
+containers:
+- name: test-website
+  image: ghcr.io/vikasrajput0112/my-react-website:IMAGE_TAG
+  imagePullPolicy: Always
