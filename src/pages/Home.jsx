@@ -13,6 +13,12 @@ const Home = () => {
                         solutions with a clean and user-friendly experience.
                     </p>
                 </section>
+
+                {/* Mobile Section */}
+                <section className="mobile-section">
+                    <h2>Mobile</h2>
+                    <p>This is mobile services</p>
+                </section>
             </main>
         </div>
     );
