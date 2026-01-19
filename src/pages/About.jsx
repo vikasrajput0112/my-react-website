@@ -5,7 +5,7 @@ const About = () => {
                 <h1>About Digi Solutions</h1>
 
                 <p className="about-intro">
-                    Digi Solutions is a modern digital technology company
+                    Solutions is a modern digital technology company
                     focused on delivering scalable, secure, and high-quality
                     software solutions. We help organizations transform their
                     ideas into powerful digital products.
