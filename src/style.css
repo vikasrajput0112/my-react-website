@@ -38,3 +38,42 @@
     background: linear-gradient(90deg, #084298, #1c7ed6);
     transform: translateX(5px);
 }
+
+
+
+/* =========================
+   FOOTER NAVIGATION
+   ========================= */
+
+.footer {
+    background: linear-gradient(90deg, #0b5ed7, #339af0);
+    color: white;
+    padding: 25px 0;
+    text-align: center;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 10px;
+}
+
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: background 0.3s ease;
+}
+
+.footer-nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.footer-text {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
