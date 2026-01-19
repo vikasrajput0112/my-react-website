@@ -1,89 +1,63 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Segoe UI, Arial, sans-serif;
+/* SERVICES */
+.service-section {
+    padding: 60px 20px;
+    background: #ffffff;
 }
 
-body {
-    background: #f5f7fb;
-}
-
-/* HEADER */
-.header {
-    background: linear-gradient(90deg, #0b5ed7, #339af0);
-    padding: 15px;
-}
-
-.logo {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.logo span {
-    color: #ffd43b;
-}
-
-.header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-}
-
-/* LAYOUT */
-.page-layout {
-    display: flex;
-    max-width: 1200px;
+.service-container {
+    max-width: 1100px;
     margin: auto;
-    padding: 30px;
+}
+
+.service-intro {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.service-card {
+    background: #f5f7fb;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* CONTACT */
+.contact-section {
+    padding: 60px 20px;
+    background: #ffffff;
+}
+
+.contact-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
-/* SIDEBAR */
-.sidebar {
-    width: 220px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-.sidebar h3 {
-    color: #0b5ed7;
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
     margin-bottom: 15px;
-}
-
-.sidebar ul {
-    list-style: none;
-}
-
-.sidebar li {
-    padding: 10px;
-    background: #f1f5ff;
-    margin-bottom: 8px;
     border-radius: 6px;
+    border: 1px solid #ccc;
 }
 
-/* HERO */
-.hero {
-    background: linear-gradient(120deg, #0b5ed7, #339af0);
-    color: white;
-    padding: 50px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-}
-
-/* FOOTER */
-.footer {
+.contact-form button {
     background: #0b5ed7;
     color: white;
-    text-align: center;
-    padding: 20px;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
 }
