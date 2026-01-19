@@ -7,7 +7,7 @@ const Home = () => {
 
             <main className="home-content">
                 <section className="home-hero">
-                    <h1>Welcome to Test-Website14</h1>
+                    <h1>Welcome to Test-Website-Hello</h1>
                     <p>
                         We build simple, reliable, and scalable digital
                         solutions with a clean and user-friendly experience.
