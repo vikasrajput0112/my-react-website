@@ -2,7 +2,7 @@ const About = () => {
     return (
         <section className="about-section">
             <div className="about-container">
-                <h1>About Digi Solutions</h1>
+                <h4>About Digi Solutions</h4>
 
                 <p className="about-intro">
                     Solutions is a modern digital technology company
