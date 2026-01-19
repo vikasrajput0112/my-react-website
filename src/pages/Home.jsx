@@ -7,7 +7,7 @@ const Home = () => {
 
             <section className="main-content">
                 <div className="hero">
-                    <h1>Digi -$Solutions That Grow Your Business</h1>
+                    <h1>We -$provide LoAn That Grow Your Business</h1>
                     <p>
                         We build reliable, scalable, and secure web solutions
                         to help businesses succeed in the digital era.
