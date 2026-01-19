@@ -77,3 +77,29 @@
     opacity: 0.9;
 }
 
+/* =========================
+   HEADER ALIGNMENT FIX
+   ========================= */
+
+.header {
+    background: linear-gradient(90deg, #0b5ed7, #339af0);
+    padding: 15px 0;
+}
+
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;   /* LEFT aligned */
+    gap: 40px;                     /* space between logo & nav */
+}
+
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
+}
