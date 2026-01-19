@@ -1,4 +1,31 @@
-containers:
-- name: test-website
-  image: ghcr.io/vikasrajput0112/my-react-website:IMAGE_TAG
-  imagePullPolicy: Always
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-website
+  namespace: test-website
+spec:
+  replicas: 2
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  selector:
+    matchLabels:
+      app: test-website
+
+  template:
+    metadata:
+      labels:
+        app: test-website
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: test-website
+          image: ghcr.io/vikasrajput0112/my-react-website:IMAGE_TAG
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
