@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        REGISTRY        = "ghcr.io"
-        IMAGE_NAME      = "ghcr.io/vikasrajput0112/my-react-website"
-        CONTAINER_NAME  = "my-react-container"
-        HOST_PORT       = "8083"
+        REGISTRY       = "ghcr.io"
+        IMAGE_REPO     = "vikasrajput0112/my-react-website"
+        IMAGE_TAG      = "build-${BUILD_NUMBER}"
+        K8S_NAMESPACE  = "test-website"
     }
 
     stages {
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'ghcr-token', variable: 'GITHUB_TOKEN')]) {
                     sh '''
-                    echo $GITHUB_TOKEN | docker login ghcr.io -u vikasrajput0112 --password-stdin
+                    echo "$GITHUB_TOKEN" | docker login ghcr.io -u vikasrajput0112 --password-stdin
                     '''
                 }
             }
@@ -29,7 +29,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                docker build -t $IMAGE_NAME:latest .
+                echo "Building image ${REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG}"
+                docker build -t ${REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG} .
                 '''
             }
         }
@@ -37,32 +38,32 @@ pipeline {
         stage('Push Image to GHCR') {
             steps {
                 sh '''
-                docker push $IMAGE_NAME:latest
+                echo "Pushing image to GHCR"
+                docker push ${REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG}
                 '''
             }
         }
 
-        stage('Stop Old Container') {
+        stage('Update Kubernetes Deployment') {
             steps {
                 sh '''
-                docker stop $CONTAINER_NAME || true
-                docker rm $CONTAINER_NAME || true
+                echo "Updating deployment with new image tag"
+                sed -i "s|IMAGE_TAG|${IMAGE_TAG}|g" k8s/deployment.yaml
                 '''
             }
         }
 
-        stage('Deploy App') {
+        stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                docker run -d \
-                  --name $CONTAINER_NAME \
-                  -p $HOST_PORT:80 \
-                  $IMAGE_NAME:latest
+                echo "Applying Kubernetes manifests"
+                kubectl apply -f k8s/deployment.yaml
+                kubectl apply -f k8s/service.yaml
                 '''
             }
         }
 
-        stage('Prune Dangling Images') {
+        stage('Cleanup Docker Images') {
             steps {
                 sh '''
                 docker image prune -f
@@ -74,7 +75,13 @@ pipeline {
 
     post {
         always {
-            sh 'docker system df'
+            sh '''
+            echo "Docker disk usage:"
+            docker system df
+            '''
+        }
+        success {
+            echo "✅ New version deployed successfully to Kubernetes"
         }
     }
 }
