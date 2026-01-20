@@ -10,9 +10,15 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Checkout main branch') {
             steps {
-                checkout scm
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: "*/${BRANCH}"]],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/vikasrajput0112/my-react-website.git'
+                    ]]
+                ])
             }
         }
 
@@ -50,6 +56,7 @@ pipeline {
                 git config user.name "jenkins"
                 git config user.email "jenkins@ci.local"
 
+                git status
                 git add k8s/deployment.yaml
                 git commit -m "Update image tag to ${IMAGE_TAG}"
                 git push origin ${BRANCH}
@@ -69,7 +76,7 @@ pipeline {
 
     post {
         success {
-            echo "✅ Image built, pushed & Git updated. Argo CD will deploy automatically."
+            echo "✅ Image pushed, Git updated, Argo CD will deploy automatically"
         }
     }
 }
