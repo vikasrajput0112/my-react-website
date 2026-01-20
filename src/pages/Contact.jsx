@@ -13,7 +13,7 @@ const Contact = () => {
                     <div className="contact-info">
                         <h3>Get in Touch</h3>
                         <p>Email: info@digisolutions.com</p>
-                        <p>Phone: +91 98765 432107777</p>
+                        <p>Phone: +91 98765 56565</p>
                         <p>Location: India</p>
                     </div>
 
