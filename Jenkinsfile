@@ -53,20 +53,26 @@ pipeline {
         }
 
         stage('Update Image Tag in Git (GitOps)') {
-            steps {
-                sh '''
-                sed -i "s|image: ghcr.io/.*/my-react-website:.*|image: ghcr.io/${IMAGE_REPO}:${IMAGE_TAG}|g" k8s/deployment.yaml
+    steps {
+        sh '''
+        # Force attach to main branch
+        git checkout -B main origin/main
 
-                git config user.name "jenkins"
-                git config user.email "jenkins@ci.local"
+        # Update image tag
+        sed -i "s|image: ghcr.io/.*/my-react-website:.*|image: ghcr.io/vikasrajput0112/my-react-website:${IMAGE_TAG}|g" k8s/deployment.yaml
 
-                git status
-                git add k8s/deployment.yaml
-                git commit -m "Update image tag to ${IMAGE_TAG}"
-                git push origin ${BRANCH}
-                '''
-            }
-        }
+        git config user.name "jenkins"
+        git config user.email "jenkins@ci.local"
+
+        git status
+        git add k8s/deployment.yaml
+        git commit -m "Update image tag to ${IMAGE_TAG}"
+
+        git push origin main
+        '''
+    }
+}
+
 
         stage('Cleanup Local Docker Cache') {
             steps {
