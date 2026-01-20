@@ -1,11 +1,16 @@
 const About = () => {
+    const heading = "About Digi Solutions";
+
     return (
         <section className="about-section">
             <div className="about-container">
-                <h4>About Digi Solutions</h4>
 
+                {/* Heading */}
+                <h4>{heading}</h4>
+
+                {/* Content */}
                 <p className="about-intro">
-                    Solutions is a modern digital technology company
+                    Digi Solutions is a modern digital technology company
                     focused on delivering scalable, secure, and high-quality
                     software solutions. We help organizations transform their
                     ideas into powerful digital products.
@@ -49,6 +54,7 @@ const About = () => {
                         efficiency, and drives long-term success.
                     </p>
                 </div>
+
             </div>
         </section>
     );
