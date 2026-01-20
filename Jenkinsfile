@@ -58,26 +58,32 @@ pipeline {
             }
         }
 
-        stage('Update Image Tag in Git (GitOps)') {
-            steps {
-                sh '''
-                    git checkout -B main origin/main
+       stage('Update Image Tag in Git (GitOps)') {
+    steps {
+        withCredentials([
+            string(credentialsId: 'ghcr-token', variable: 'GITHUB_TOKEN')
+        ]) {
+            sh '''
+                git checkout -B main origin/main
 
-                    sed -i "s|image: .*my-react-website:.*|image: ghcr.io/vikasrajput0112/my-react-website:${IMAGE_TAG}|g" \
-                        k8s/deployment.yaml
+                sed -i "s|image: .*my-react-website:.*|image: ghcr.io/vikasrajput0112/my-react-website:${IMAGE_TAG}|g" \
+                    k8s/deployment.yaml
 
-                    echo "Updated image reference:"
-                    grep image: k8s/deployment.yaml
+                echo "Updated image reference:"
+                grep image: k8s/deployment.yaml
 
-                    git config user.name "jenkins"
-                    git config user.email "jenkins@ci.local"
+                git config user.name "jenkins"
+                git config user.email "jenkins@ci.local"
 
-                    git add k8s/deployment.yaml
-                    git commit -m "Update image tag to ${IMAGE_TAG}"
-                    git push origin main
-                '''
-            }
+                git add k8s/deployment.yaml
+                git commit -m "Update image tag to ${IMAGE_TAG}"
+
+                git push https://${GITHUB_TOKEN}@github.com/vikasrajput0112/my-react-website.git main
+            '''
         }
+    }
+}
+
 
         stage('Cleanup Local Docker Cache') {
             steps {
