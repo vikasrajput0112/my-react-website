@@ -4,7 +4,7 @@ metadata:
   name: test-website
   namespace: test-website
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: test-website
@@ -17,9 +17,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: test-website
-          image: ghcr.io/vikasrajput0112/my-react-website:build-47
+          image: ghcr.io/vikasrajput0112/my-react-website:build-48
           imagePullPolicy: Always
           ports:
             - containerPort: 80
-
-
