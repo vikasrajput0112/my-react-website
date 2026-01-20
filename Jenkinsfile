@@ -75,7 +75,7 @@ pipeline {
                 }
             }
         }
-
+/*
         stage('Update Kubernetes Deployment') {
             steps {
                 sh '''
@@ -94,6 +94,7 @@ pipeline {
                 '''
             }
         }
+        */
 
         stage('Cleanup Local Docker Cache') {
             steps {
