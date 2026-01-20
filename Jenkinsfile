@@ -45,11 +45,11 @@ pipeline {
             }
         }
 
-        stage('Cleanup Old Images in GHCR (Keep Last 2)') {
+        stage('Cleanup Old Images in GHCR (Keep Last 9)') {
             steps {
                 withCredentials([string(credentialsId: 'ghcr-token', variable: 'GITHUB_TOKEN')]) {
                     sh '''
-                    echo "Cleaning old images from GHCR (keeping last 2)..."
+                    echo "Cleaning old images from GHCR (keeping last 9)..."
 
                     IMAGE_NAME="my-react-website"
                     OWNER="vikasrajput0112"
@@ -63,7 +63,7 @@ pipeline {
                     count=0
                     for id in $versions; do
                         count=$((count+1))
-                        if [ $count -gt 2 ]; then
+                        if [ $count -gt 9 ]; then
                             echo "Deleting image version ID: $id"
                             curl -s -X DELETE \
                                 -H "Authorization: Bearer $GITHUB_TOKEN" \
