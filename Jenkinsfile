@@ -2,11 +2,10 @@ pipeline {
     agent any
 
     environment {
-        REGISTRY       = "ghcr.io"
-        IMAGE_REPO     = "vikasrajput0112/my-react-website"
-        IMAGE_TAG      = "build-${BUILD_NUMBER}"
-        K8S_NAMESPACE  = "test-website"
-        GH_API         = "https://api.github.com"
+        REGISTRY      = "ghcr.io"
+        IMAGE_REPO    = "vikasrajput0112/my-react-website"
+        IMAGE_TAG     = "build-${BUILD_NUMBER}"
+        K8S_NAMESPACE = "test-website"
     }
 
     stages {
@@ -30,7 +29,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                echo "Building image ${REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG}"
                 docker build -t ${REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG} .
                 '''
             }
@@ -39,47 +37,14 @@ pipeline {
         stage('Push Image to GHCR') {
             steps {
                 sh '''
-                echo "Pushing image to GHCR"
                 docker push ${REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG}
                 '''
-            }
-        }
-
-        stage('Cleanup Old Images in GHCR (Keep Last 2)') {
-            steps {
-                withCredentials([string(credentialsId: 'ghcr-token', variable: 'GITHUB_TOKEN')]) {
-                    sh '''
-                    echo "Cleaning old images from GHCR (keeping last 2)..."
-
-                    IMAGE_NAME="my-react-website"
-                    OWNER="vikasrajput0112"
-
-                    # Get all image versions (sorted newest first)
-                    versions=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-                        -H "Accept: application/vnd.github+json" \
-                        ${GH_API}/users/${OWNER}/packages/container/${IMAGE_NAME}/versions \
-                        | jq -r 'sort_by(.created_at) | reverse | .[].id')
-
-                    count=0
-                    for id in $versions; do
-                        count=$((count+1))
-                        if [ $count -gt 2 ]; then
-                            echo "Deleting image version ID: $id"
-                            curl -s -X DELETE \
-                                -H "Authorization: Bearer $GITHUB_TOKEN" \
-                                -H "Accept: application/vnd.github+json" \
-                                ${GH_API}/users/${OWNER}/packages/container/${IMAGE_NAME}/versions/$id
-                        fi
-                    done
-                    '''
-                }
             }
         }
 
         stage('Update Kubernetes Deployment') {
             steps {
                 sh '''
-                echo "Updating deployment with new image tag"
                 sed -i "s|IMAGE_TAG|${IMAGE_TAG}|g" k8s/deployment.yaml
                 '''
             }
@@ -88,18 +53,24 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                echo "Applying Kubernetes manifests"
                 kubectl apply -f k8s/deployment.yaml
                 kubectl apply -f k8s/service.yaml
                 '''
             }
         }
 
-        stage('Cleanup Local Docker Cache') {
+        stage('Cleanup Local Docker Images (Keep last 2)') {
             steps {
                 sh '''
+                echo "Cleaning local Docker images (keeping last 2)..."
+
+                docker images ${REGISTRY}/${IMAGE_REPO} \
+                  --format "{{.ID}} {{.CreatedAt}}" \
+                | sort -rk2 \
+                | awk 'NR>2 {print $1}' \
+                | xargs -r docker rmi -f
+
                 docker image prune -f
-                docker builder prune -f
                 '''
             }
         }
@@ -108,12 +79,12 @@ pipeline {
     post {
         always {
             sh '''
-            echo "Docker disk usage:"
+            echo "Docker disk usage after cleanup:"
             docker system df
             '''
         }
         success {
-            echo "✅ Deployed successfully & old GHCR images cleaned"
+            echo "✅ Image deployed and old local images cleaned"
         }
     }
 }
