@@ -6,6 +6,7 @@ pipeline {
         IMAGE_REPO     = "vikasrajput0112/my-react-website"
         IMAGE_TAG      = "build-${BUILD_NUMBER}"
         K8S_NAMESPACE  = "test-website"
+        GH_API         = "https://api.github.com"
     }
 
     stages {
@@ -44,6 +45,37 @@ pipeline {
             }
         }
 
+        stage('Cleanup Old Images in GHCR (Keep Last 2)') {
+            steps {
+                withCredentials([string(credentialsId: 'ghcr-token', variable: 'GITHUB_TOKEN')]) {
+                    sh '''
+                    echo "Cleaning old images from GHCR (keeping last 2)..."
+
+                    IMAGE_NAME="my-react-website"
+                    OWNER="vikasrajput0112"
+
+                    # Get all image versions (sorted newest first)
+                    versions=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+                        -H "Accept: application/vnd.github+json" \
+                        ${GH_API}/users/${OWNER}/packages/container/${IMAGE_NAME}/versions \
+                        | jq -r 'sort_by(.created_at) | reverse | .[].id')
+
+                    count=0
+                    for id in $versions; do
+                        count=$((count+1))
+                        if [ $count -gt 2 ]; then
+                            echo "Deleting image version ID: $id"
+                            curl -s -X DELETE \
+                                -H "Authorization: Bearer $GITHUB_TOKEN" \
+                                -H "Accept: application/vnd.github+json" \
+                                ${GH_API}/users/${OWNER}/packages/container/${IMAGE_NAME}/versions/$id
+                        fi
+                    done
+                    '''
+                }
+            }
+        }
+
         stage('Update Kubernetes Deployment') {
             steps {
                 sh '''
@@ -63,7 +95,7 @@ pipeline {
             }
         }
 
-        stage('Cleanup Docker Images') {
+        stage('Cleanup Local Docker Cache') {
             steps {
                 sh '''
                 docker image prune -f
@@ -81,7 +113,7 @@ pipeline {
             '''
         }
         success {
-            echo "✅ New version deployed successfully to Kubernetes"
+            echo "✅ Deployed successfully & old GHCR images cleaned"
         }
     }
 }
