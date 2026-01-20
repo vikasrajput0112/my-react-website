@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout(true)
+    }
+
     environment {
         REGISTRY   = "ghcr.io"
         IMAGE_REPO = "vikasrajput0112/my-react-website"
@@ -76,7 +80,7 @@ pipeline {
 
     post {
         success {
-            echo "✅ Image pushed, Git updated, Argo CD will deploy automatically"
+            echo "✅ Image pushed, Git updated, Argo CD will sync automatically"
         }
     }
 }
