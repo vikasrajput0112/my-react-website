@@ -1,28 +1,26 @@
+
 import Sidebar from "../components/Sidebar";
 
 const Home = () => {
     return (
-        <div className="home-wrapper">
-            <div className="home-layout">
-                {/* LEFT SIDEBAR */}
-                <Sidebar />
+        <div className="page-layout">
+            <Sidebar />
 
-                {/* RIGHT CONTENT */}
-                <div className="home-main">
-                    <div className="home-card">
-                        <h1>Welcome to Test-Website-</h1>
-                        <p>
-                            We build simple, reliable, and scalable digital
-                            solutions with a clean and user-friendly experience.
-                        </p>
-                    </div>
+            <main className="home-content">
+                <section className="home-hero">
+                    <h1>Welcome to Test-Website-20jan</h1>
+                    <p>
+                        We build simple, reliable, and scalable digital
+                        solutions with a clean and user-friendly experience.
+                    </p>
+                </section>
 
-                    <div className="home-card">
-                        <h2>Mobile</h2>
-                        <p>This is mobile services</p>
-                    </div>
-                </div>
-            </div>
+                {/* Mobile Section */}
+                <section className="mobile-section">
+                    <h2>Mobile</h2>
+                    <p>This is mobile services</p>
+                </section>
+            </main>
         </div>
     );
 };
