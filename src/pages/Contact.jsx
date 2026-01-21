@@ -13,8 +13,8 @@ const Contact = () => {
                     {/* Left side */}
                     <div className="contact-info">
                         <h2>Get in Touch</h2>
-                        <p><strong>Email:</strong> info@digisolutions.com</p>
-                        <p><strong>Phone:</strong> +91 98765 37474</p>
+                        <p><strong>Email:</strong> info@testwebsite.com</p>
+                        <p><strong>Phone:</strong> +91 98765 43210</p>
                         <p><strong>Location:</strong> India</p>
                     </div>
 
