@@ -12,7 +12,7 @@ const Contact = () => {
                 <div className="contact-grid">
                     {/* Left side */}
                     <div className="contact-info">
-                        <h3>Get in Touch</h3>
+                        <h2>Get in Touch</h2>
                         <p><strong>Email:</strong> info@digisolutions.com</p>
                         <p><strong>Phone:</strong> +91 98765 37474</p>
                         <p><strong>Location:</strong> India</p>
