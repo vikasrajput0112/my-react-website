@@ -10,13 +10,15 @@ const Contact = () => {
                 </p>
 
                 <div className="contact-grid">
+                    {/* Left side */}
                     <div className="contact-info">
                         <h3>Get in Touch</h3>
-                        <p>Email: info@digisolutions.com</p>
-                        <p>Phone: +91 98765 37474-617317</p>
-                        <p>Location: India</p>
+                        <p><strong>Email:</strong> info@digisolutions.com</p>
+                        <p><strong>Phone:</strong> +91 98765 37474</p>
+                        <p><strong>Location:</strong> India</p>
                     </div>
 
+                    {/* Right side */}
                     <form className="contact-form">
                         <input type="text" placeholder="Your Name" required />
                         <input type="email" placeholder="Your Email" required />
