@@ -25,7 +25,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: test-website
-          image: ghcr.io/vikasrajput0112/my-react-website:build-66
+          image: ghcr.io/vikasrajput0112/my-react-website:build-67
           imagePullPolicy: Always
           ports:
             - containerPort: 80
