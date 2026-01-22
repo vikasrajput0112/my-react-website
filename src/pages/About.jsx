@@ -8,50 +8,56 @@ const About = () => {
                 {/* Heading */}
                 <h4>{heading}</h4>
 
-                {/* Content */}
+                {/* Intro Content */}
                 <p className="about-intro">
-                    Digi Solutions is a modern digital technology company
-                    focused on delivering scalable, secure, and high-quality
-                    software solutions. We help organizations transform their
-                    ideas into powerful digital products.
+                    Digi Solutions is a forward-thinking digital technology
+                    company dedicated to building scalable, secure, and
+                    high-performance software solutions. We partner with
+                    businesses to transform complex challenges into reliable
+                    digital products.
                 </p>
 
+                {/* About Grid */}
                 <div className="about-grid">
                     <div className="about-card">
                         <h3>Who We Are</h3>
                         <p>
-                            We are a team of skilled developers, DevOps
-                            engineers, and cloud specialists with hands-on
-                            experience in building enterprise-grade
-                            applications and automation pipelines.
+                            We are a passionate team of software developers,
+                            DevOps engineers, and cloud professionals with
+                            strong expertise in designing and delivering
+                            enterprise-grade applications and automation
+                            solutions.
                         </p>
                     </div>
 
                     <div className="about-card">
                         <h3>What We Deliver</h3>
                         <p>
-                            Our services include web application development,
-                            cloud infrastructure, CI/CD automation, container
-                            orchestration, and system modernization.
+                            We provide end-to-end technology services including
+                            web and application development, cloud
+                            infrastructure setup, CI/CD automation,
+                            containerization, Kubernetes orchestration, and
+                            system modernization.
                         </p>
                     </div>
 
                     <div className="about-card">
                         <h3>Our Approach</h3>
                         <p>
-                            We follow industry best practices, clean
-                            architecture, and agile methodologies to ensure
-                            every solution is reliable, maintainable, and
-                            future-ready.
+                            Our approach is built on clean architecture,
+                            industry best practices, and agile methodologies.
+                            We focus on delivering solutions that are
+                            maintainable, secure, and ready for future growth.
                         </p>
                     </div>
                 </div>
 
+                {/* Footer Message */}
                 <div className="about-footer">
                     <p>
-                        At Digi Solutions, our goal is simple — to build
-                        technology that empowers businesses, improves
-                        efficiency, and drives long-term success.
+                        At Digi Solutions, our mission is to empower businesses
+                        through technology by improving efficiency, enabling
+                        innovation, and driving sustainable long-term success.
                     </p>
                 </div>
 
