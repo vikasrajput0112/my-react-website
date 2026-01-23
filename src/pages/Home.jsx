@@ -9,206 +9,217 @@ const Home = () => {
             {/* Main Content */}
             <main className="home-content">
 
-                {/* Hero Section */}
-                <section className="home-hero">
-                    <div className="hero-inner">
-                        <h1>Welcome to Test-Website</h1>
-                        <p className="hero-subtitle">
-                            We design, build, and deliver modern digital
-                            solutions that help businesses grow, scale,
-                            and succeed in a digital-first world.
+                {/* HERO / SEARCH SECTION */}
+                <section className="booking-hero">
+                    <div className="hero-wrapper">
+                        <h1>Book Tickets Instantly</h1>
+                        <p className="hero-tagline">
+                            Flights, buses, trains, movies, and events —
+                            all bookings in one simple platform.
                         </p>
 
-                        <div className="hero-actions">
-                            <button className="primary-btn">
-                                Get Started
-                            </button>
-                            <button className="secondary-btn">
-                                Learn More
+                        {/* Search Box */}
+                        <div className="search-box">
+                            <div className="search-row">
+                                <div className="search-field">
+                                    <label>From</label>
+                                    <input type="text" placeholder="Enter source city" />
+                                </div>
+
+                                <div className="search-field">
+                                    <label>To</label>
+                                    <input type="text" placeholder="Enter destination city" />
+                                </div>
+
+                                <div className="search-field">
+                                    <label>Date</label>
+                                    <input type="date" />
+                                </div>
+
+                                <div className="search-field">
+                                    <label>Passengers</label>
+                                    <select>
+                                        <option>1 Passenger</option>
+                                        <option>2 Passengers</option>
+                                        <option>3 Passengers</option>
+                                        <option>4+ Passengers</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button className="search-btn">
+                                Search Tickets
                             </button>
                         </div>
                     </div>
                 </section>
 
-                {/* About Section */}
-                <section className="about-section">
-                    <h2>Who We Are</h2>
-                    <p>
-                        Test-Website is a technology-driven organization focused
-                        on creating simple, reliable, and scalable software
-                        solutions. Our goal is to transform ideas into powerful
-                        digital products that deliver real value.
-                    </p>
-
-                    <p>
-                        With a team of experienced developers, designers, and
-                        DevOps engineers, we specialize in building applications
-                        that are secure, efficient, and easy to maintain.
-                    </p>
-                </section>
-
-                {/* Services Overview */}
+                {/* SERVICES SECTION */}
                 <section className="services-section">
-                    <h2>Our Core Services</h2>
+                    <h2>What You Can Book</h2>
 
                     <div className="services-grid">
                         <div className="service-card">
-                            <h3>Web Development</h3>
+                            <h3>✈ Flights</h3>
                             <p>
-                                We create responsive and high-performance web
-                                applications using modern technologies and best
-                                practices.
+                                Book domestic and international flights
+                                at the best prices with instant confirmation.
                             </p>
                         </div>
 
                         <div className="service-card">
-                            <h3>Mobile Solutions</h3>
+                            <h3>🚌 Bus Tickets</h3>
                             <p>
-                                From mobile-friendly websites to scalable
-                                backend services, we ensure seamless mobile
-                                experiences.
+                                Choose from thousands of bus routes with
+                                comfortable seating and trusted operators.
                             </p>
                         </div>
 
                         <div className="service-card">
-                            <h3>Cloud & DevOps</h3>
+                            <h3>🚆 Train Tickets</h3>
                             <p>
-                                Automated CI/CD pipelines, containerization,
-                                monitoring, and cloud-native deployments.
+                                Search train schedules, seat availability,
+                                and book tickets with ease.
                             </p>
                         </div>
 
                         <div className="service-card">
-                            <h3>System Automation</h3>
+                            <h3>🎬 Movies & Events</h3>
                             <p>
-                                Linux automation, infrastructure management,
-                                monitoring, and performance optimization.
+                                Book movie tickets and event passes in
+                                advance and avoid long queues.
                             </p>
                         </div>
                     </div>
                 </section>
 
-                {/* Mobile Section */}
-                <section className="mobile-section">
-                    <h2>Mobile Solutions</h2>
-                    <p>
-                        Our mobile services are designed to deliver fast,
-                        reliable, and scalable solutions across devices.
-                        Whether it's mobile optimization or backend support,
-                        we ensure consistent performance.
-                    </p>
+                {/* POPULAR ROUTES */}
+                <section className="routes-section">
+                    <h2>Popular Routes</h2>
 
-                    <div className="mobile-features">
-                        <div className="mobile-feature">
-                            <h4>Device Compatibility</h4>
-                            <p>
-                                Optimized for Android, iOS, and all modern
-                                browsers to ensure smooth user experiences.
-                            </p>
+                    <div className="routes-grid">
+                        <div className="route-card">
+                            <h4>Delhi → Mumbai</h4>
+                            <p>Starting from ₹3,499</p>
                         </div>
 
-                        <div className="mobile-feature">
-                            <h4>Performance Focused</h4>
-                            <p>
-                                Lightweight architecture designed for speed,
-                                responsiveness, and reduced load times.
-                            </p>
+                        <div className="route-card">
+                            <h4>Bangalore → Chennai</h4>
+                            <p>Starting from ₹1,299</p>
                         </div>
 
-                        <div className="mobile-feature">
-                            <h4>Secure by Design</h4>
-                            <p>
-                                Security-first approach to protect data,
-                                transactions, and user privacy.
-                            </p>
+                        <div className="route-card">
+                            <h4>Pune → Hyderabad</h4>
+                            <p>Starting from ₹2,199</p>
+                        </div>
+
+                        <div className="route-card">
+                            <h4>Kolkata → Delhi</h4>
+                            <p>Starting from ₹3,999</p>
                         </div>
                     </div>
                 </section>
 
-                {/* Process Section */}
+                {/* OFFERS SECTION */}
+                <section className="offers-section">
+                    <h2>Exclusive Offers</h2>
+
+                    <div className="offers-grid">
+                        <div className="offer-card">
+                            <h3>Flat 20% OFF</h3>
+                            <p>On first flight booking</p>
+                        </div>
+
+                        <div className="offer-card">
+                            <h3>Bus Cashback</h3>
+                            <p>Up to ₹200 on bus tickets</p>
+                        </div>
+
+                        <div className="offer-card">
+                            <h3>Movie Night Deal</h3>
+                            <p>Buy 1 Get 1 Free</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* HOW IT WORKS */}
                 <section className="process-section">
-                    <h2>How We Work</h2>
+                    <h2>How Booking Works</h2>
 
-                    <div className="process-steps">
+                    <div className="process-grid">
                         <div className="process-step">
-                            <span className="step-number">01</span>
-                            <h4>Requirement Analysis</h4>
+                            <span>1</span>
+                            <h4>Search</h4>
                             <p>
-                                We start by understanding your business needs
-                                and defining clear project goals.
+                                Enter your route, date, and preferences
+                                to find available tickets.
                             </p>
                         </div>
 
                         <div className="process-step">
-                            <span className="step-number">02</span>
-                            <h4>Design & Architecture</h4>
+                            <span>2</span>
+                            <h4>Compare</h4>
                             <p>
-                                Clean UI design and scalable architecture
-                                planning for long-term growth.
+                                Compare prices, timings, and seat options
+                                from multiple providers.
                             </p>
                         </div>
 
                         <div className="process-step">
-                            <span className="step-number">03</span>
-                            <h4>Development</h4>
+                            <span>3</span>
+                            <h4>Book</h4>
                             <p>
-                                Agile development with regular testing and
-                                continuous integration.
+                                Securely book your tickets with instant
+                                confirmation.
                             </p>
                         </div>
 
                         <div className="process-step">
-                            <span className="step-number">04</span>
-                            <h4>Deployment & Support</h4>
+                            <span>4</span>
+                            <h4>Travel & Enjoy</h4>
                             <p>
-                                Production-ready deployment with monitoring
-                                and ongoing support.
+                                Carry your e-ticket and enjoy a hassle-free journey.
                             </p>
                         </div>
                     </div>
                 </section>
 
-                {/* Testimonials */}
-                <section className="testimonial-section">
-                    <h2>What Clients Say</h2>
+                {/* TRUST SECTION */}
+                <section className="trust-section">
+                    <h2>Why Choose Us</h2>
 
-                    <div className="testimonial-grid">
-                        <div className="testimonial-card">
-                            <p>
-                                “Test-Website delivered exactly what we needed.
-                                The system is fast, reliable, and easy to use.”
-                            </p>
-                            <span>— Enterprise Client</span>
+                    <div className="trust-grid">
+                        <div className="trust-item">
+                            <h4>Secure Payments</h4>
+                            <p>All transactions are protected with encryption.</p>
                         </div>
 
-                        <div className="testimonial-card">
-                            <p>
-                                “Their DevOps and automation approach helped us
-                                reduce deployment time significantly.”
-                            </p>
-                            <span>— Startup Founder</span>
+                        <div className="trust-item">
+                            <h4>24x7 Support</h4>
+                            <p>Dedicated customer support whenever you need help.</p>
+                        </div>
+
+                        <div className="trust-item">
+                            <h4>Trusted Partners</h4>
+                            <p>We work with verified travel and event partners.</p>
                         </div>
                     </div>
                 </section>
 
-                {/* Call To Action */}
+                {/* CTA */}
                 <section className="cta-section">
-                    <h2>Ready to Build Something Great?</h2>
+                    <h2>Start Your Journey Today</h2>
                     <p>
-                        Let’s work together to turn your ideas into powerful
-                        digital solutions.
+                        Book tickets in minutes and travel with confidence.
                     </p>
-
                     <button className="primary-btn">
-                        Contact Us
+                        Book Now
                     </button>
                 </section>
 
-                {/* Footer */}
+                {/* FOOTER */}
                 <footer className="home-footer">
-                    <p>
-                        © 2026 Test-Website. All rights reserved.
-                    </p>
+                    <p>© 2026 TicketBooking Platform. All rights reserved.</p>
                 </footer>
 
             </main>
